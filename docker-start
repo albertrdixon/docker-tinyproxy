@@ -1,0 +1,19 @@
+#!/bin/bash
+set -eo pipefail
+function run_cmd {
+  exec $*
+}
+
+function main {
+  local cmd="$@"
+  [ -z "$cmd" ] &&\
+    cmd="tinyproxy -d -c /tinyproxy/tinyproxy.conf"
+
+  [ -f /tinyproxy/tinyproxy.conf ] || envtpl /tinyproxy/tinyproxy.conf.tpl
+  [ -d /var/run/tinyproxy ] || mkdir -p /var/run/tinyproxy
+  run_cmd "$cmd"
+}
+
+ulimit -n 32768
+main "$@"
+exit 0
