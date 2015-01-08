@@ -16,10 +16,11 @@ RUN dpkg-reconfigure locales && \
     locale-gen C.UTF-8 && \
     /usr/sbin/update-locale LANG=C.UTF-8
 
-ADD tinyproxy.conf.tpl /tinyproxy/
+ADD tinyproxy.conf.tpl /
 ADD docker-start /usr/local/bin/
 RUN chmod a+rx /usr/local/bin/docker-start &&\
-    rm -f /etc/tinyproxy.conf
+    rm -f /etc/tinyproxy.conf &&\
+    mkdir /tinyproxy
 
 WORKDIR /tinyproxy
 ENTRYPOINT ["docker-start"]

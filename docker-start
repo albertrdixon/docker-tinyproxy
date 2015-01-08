@@ -9,7 +9,8 @@ function main {
   [ -z "$cmd" ] &&\
     cmd="tinyproxy -d -c /tinyproxy/tinyproxy.conf"
 
-  [ -f /tinyproxy/tinyproxy.conf ] || envtpl /tinyproxy/tinyproxy.conf.tpl
+  [ -f /tinyproxy/tinyproxy.conf ] ||\
+    envtpl -o /tinyproxy/tinyproxy.conf /tinyproxy.conf.tpl
   [ -d /var/run/tinyproxy ] || mkdir -p /var/run/tinyproxy
   run_cmd "$cmd"
 }
