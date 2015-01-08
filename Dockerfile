@@ -27,10 +27,11 @@ ENTRYPOINT ["docker-start"]
 EXPOSE 8899
 
 ENV PATH                    /usr/local/bin:$PATH
+ENV CONFIG                  tinyproxy.conf
 ENV PORT                    8899
 ENV USER                    root
 ENV GROUP                   root
-ENV LOG_FILE                /tinyproxy/tinyproxy.log
+ENV LOG_FILE                tinyproxy.log
 ENV LOG_LEVEL               notice
 ENV TIMEOUT                 120
 ENV MAX_CLIENTS             20

@@ -7,10 +7,10 @@ function run_cmd {
 function main {
   local cmd="$@"
   [ -z "$cmd" ] &&\
-    cmd="tinyproxy -d -c /tinyproxy/tinyproxy.conf"
+    cmd="tinyproxy -d -c /tinyproxy/$CONFIG"
 
   [ -f /tinyproxy/tinyproxy.conf ] ||\
-    envtpl -o /tinyproxy/tinyproxy.conf /tinyproxy.conf.tpl
+    envtpl -o "/tinyproxy/$CONFIG" /tinyproxy.conf.tpl
   [ -d /var/run/tinyproxy ] || mkdir -p /var/run/tinyproxy
   run_cmd "$cmd"
 }

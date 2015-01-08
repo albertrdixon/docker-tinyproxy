@@ -14,7 +14,7 @@ DefaultErrorFile "/usr/share/tinyproxy/default.html"
 StatHost "tinyproxy.stats"
 StatFile "/usr/share/tinyproxy/stats.html"
 
-Logfile "{{ LOG_FILE }}"
+Logfile "/tinyproxy/{{ LOG_FILE }}"
 LogLevel {{ LOG_LEVEL|capitalize }}
 
 PidFile "/var/run/tinyproxy/tinyproxy.pid"
