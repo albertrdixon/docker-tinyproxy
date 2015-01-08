@@ -34,14 +34,15 @@ Allow {{ ip }}
 
 {% if UPSTREAM_PORT is defined %}
 Upstream {{ UPSTREAM_PORT|replace("tcp://", "") }}
-{% elif UPSTREAM_ADDR is defined %}
+{% endif %}
+{% if UPSTREAM_ADDR is defined %}
 Upstream {{ UPSTREAM_ADDR }}
 {% endif %}
 
 {% if REVERSE_PATH is defined %}
 {% set revpath = REVERSE_PATH %}
 {% for rp in revpath.split(",") %}
-ReversePath "{{ rp.split("|")|first }}" "{{ rp.split("|")|last }}"
+ReversePath "/{{ rp.split("|")|first }}/" "{{ rp.split("|")|last }}/"
 {% endfor %}
 ReverseOnly Yes
 ReverseMagic Yes
